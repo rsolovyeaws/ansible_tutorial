@@ -33,4 +33,5 @@ and will shorttent previous ad-hoc command to:
 ```
 ansible all --list-hosts
 ansible all -m gather_facts
+ansible all -m yum -a update_cache=true --become --ask-become-pass
 ```
