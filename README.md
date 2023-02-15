@@ -28,3 +28,9 @@ private_key_file = ~/.ssh/28-31-ansible
 ansible.cfg in the repository will override /etc/ansible/ansible.cfg 
 and will shorttent previous ad-hoc command to:
 ```ansible all -m ping```
+
+---other usefull comands:
+```
+ansible all --list-hosts
+ansible all -m gather_facts
+```
