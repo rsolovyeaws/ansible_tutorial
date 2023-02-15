@@ -10,3 +10,9 @@ Host github_ssh_connection
 ``` 
 
 ```git clone git@github_ssh_connection:rsolovyeaws/ansible_tutorial.git```
+
+Add inventory file with IP adresses 
+
+Run ad-hoc ping command 
+
+```ansible all --key-file ~/.ssh/28-31-ansible -i inventory -m ping```
