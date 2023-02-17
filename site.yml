@@ -1,0 +1,62 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (CentOS)
+    tags: always
+    yum:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: install updates (Linux Mint)
+    tags: always
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Linux Mint"
+
+- hosts: web_servers
+  become: true
+  tasks: 
+
+  - name: install apache2 package
+    tags: apache,apache2,mint
+    apt:
+      name: 
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Linux Mint"
+
+  - name: install httpd package
+    tags: apache,centos,httpd
+    yum:
+      name: 
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: install mariadb on (CentOS)
+    tags: centos,db,mariadb
+    yum:
+      name: mariadb
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: instal samba package
+    tags: samba
+    package:
+      name: samba
+      state: latest
+
