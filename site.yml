@@ -4,43 +4,29 @@
   become: true
   pre_tasks:
 
-  - name: install updates (CentOS)
+  - name: update repo cache (CentOS)
     tags: always
     yum:
-      update_only: yes
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "CentOS"
 
-  - name: install updates (Linux Mint)
+  - name: update repo cache (Linux Mint)
     tags: always
     apt:
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Linux Mint"
 
 - hosts: all
   become: true
   tasks:
 
-  - name: create simone user
-    tags: always
-    user:
-      name: simone
-      groups: root
-
   - name: add ssh key for simone
     tags: always
     authorized_key:
       user: simone
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4wFtXxj8zuv/SWlC3qLCfZ1ZoGH1OgLqejm+3CcldRVJ25X6KD+H7i4pUaqN+FvvosczLkpAayd1g1PlXE2qwom6otkC2xhiO1K9xXXDF3EKgV+cd84ydE234Qag4taqAmuRT1XdAIpygUs+eO3yvn/YtiBQiXNVyK0HmTdeFoCMxxb0xY4D9cQL0e5gXc4HYa7X1cl1nRtKy6CRiffxbsuYq6vZvBXcB7r37Iz1dc4E8QrAzIw4HnrPBaSKG9CgiVhg6NmERLTdIomPBKIZLtNKImwjKdMjlidjy6N2hufCU+1yTE0Ojc60556w8/HOxxdd4j9krqCAeqA2HYdSvHDEdrsi/1zOfuxCKzg5ODSGg1GIoSGOHxEnTSPU3yLIn1qm3XDP/uemjTAl/4Z2oZWELMYSOeOg18CImMF1XTech46u4dx/zhlWvOq6JYwDdTcpT9h9aTa5r5TbS9V+50El1jiknV1FcI8t2vldvBQFAXqOJlEXviAwLUpRKRZIoxkwI5Gb14cs7HxHiMxcVMP7KW/9LMg4e47QbLMHANeSt5Sz73NuNjSN/MZ7TV1tfRQnkHSbSnJNhC/6u6aZvM4aXHrS4LHSZg172tbagURRz/xerY5FHQiwlDMaPq6qlrS+rWqRAkKF37QVUxEZ2bCjKjybcfOYzU3wqwlX/Hw== bob@localhost.localdomain"
-
-  - name: add sudoers file for simone
-    tags: always
-    copy: 
-      src: sudoer_simone
-      dest: /etc/sudoers.d/simone
-      owner: root
-      group: root
-      mode: 0440
 
 - hosts: web_servers
   become: true
