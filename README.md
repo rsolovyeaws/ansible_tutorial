@@ -35,3 +35,7 @@ ansible all --list-hosts
 ansible all -m gather_facts
 ansible all -m yum -a update_cache=true --become --ask-become-pass
 ```
+
+fininshed tutorial: 
+NOTES: IP's in the inventory file and host_vars are local VM's.
+FAILS->SOLUTIONS: ansible could not parse sshd_config_file variable from the host_vars, had to make two plays distinguished by asnsible distriution variable
