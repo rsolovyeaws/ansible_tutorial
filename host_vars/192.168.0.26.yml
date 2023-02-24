@@ -1,0 +1,5 @@
+ssh_users: "bob simone"
+ssh_template_file: "/home/bob/ansible_tutorial/roles/templates/ssh_config_ubuntu.j2"
+apache_package_name: apache2
+apache_service: apache2
+php_package_name: libapache2-mod-php

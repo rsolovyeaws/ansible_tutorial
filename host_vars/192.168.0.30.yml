@@ -1,3 +1,5 @@
+ssh_users: "bob simone"
+ssh_template_file: "/home/bob/ansible_tutorial/roles/base/templates/ssh_config_centos.j2"
 apache_package_name: httpd
 apache_service: httpd
 php_package_name: php

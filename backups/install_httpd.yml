@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: install httpd package
+    yum:
+      name: httpd
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
